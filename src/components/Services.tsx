@@ -1,94 +1,122 @@
+// Services — the "menu" of what NinePM builds.
+// Design: icon badge + title + one-line hook + body. Gradient border shimmer on featured card.
+// Layout: 2-col + 1 full-width featured row for visual variety.
+
 const services = [
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
+    emoji: "⚡",
     title: "Workflow Automation",
-    body: "We map your repetitive processes — approvals, notifications, data entry — and automate them end to end. Your team stops doing busywork and starts doing real work.",
-    tag: "Most popular",
+    hook: "Kill the busywork.",
+    body: "Approvals, notifications, data entry, status updates — mapped and automated end to end. Your team stops copy-pasting and starts doing work that actually matters.",
+    featured: true,
+    tag: "Most requested",
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
+    emoji: "📊",
     title: "Automated Reporting",
-    body: "Get the numbers you care about delivered automatically — daily, weekly, or in real time. No more building the same report from scratch every Monday morning.",
+    hook: "Numbers that find you.",
+    body: "Your reports build themselves — daily, weekly, or live. No more Monday morning spreadsheet sessions. The data is always there, always right.",
+    featured: false,
     tag: null,
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-      </svg>
-    ),
+    emoji: "📩",
     title: "Lead & Follow-Up Automation",
-    body: "Never let a lead go cold again. We set up automated follow-up sequences that engage prospects at the right moment — without anyone having to remember to send a message.",
+    hook: "Every lead gets a reply.",
+    body: "Automated follow-up sequences that fire at the right time — without anyone having to remember. You stop losing deals to slow response times.",
+    featured: false,
     tag: null,
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-      </svg>
-    ),
-    title: "Internal Dashboards & Tools",
-    body: "Custom dashboards that show your team exactly what they need — inventory, sales, appointments, performance. Built for your business, not a generic template.",
+    emoji: "🖥️",
+    title: "Internal Dashboards",
+    hook: "See your business in real time.",
+    body: "Custom dashboards built for how you actually track performance — not a generic template. Sales, inventory, appointments, KPIs — one screen, always current.",
+    featured: false,
     tag: null,
   },
   {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2" />
-      </svg>
-    ),
+    emoji: "🤖",
     title: "AI-Powered Assistants",
-    body: "Deploy a smart assistant that handles customer inquiries, qualifies leads, or supports your internal team — available 24/7 without adding headcount.",
+    hook: "Always on. Zero headcount.",
+    body: "Smart assistants that handle customer questions, qualify leads, or support your team around the clock — without adding staff.",
+    featured: false,
     tag: "New",
   },
 ];
 
 export default function Services() {
-  return (
-    <section id="services" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <p className="text-[#7ECCD8] text-sm font-medium uppercase tracking-widest mb-4 text-center">
-          What We Build
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-          Everything your operations need to run on autopilot
-        </h2>
-        <p className="text-slate-400 text-center max-w-xl mx-auto mb-16">
-          We don&apos;t sell software. We build the systems that run behind your
-          business — quietly, reliably, and exactly the way you need them.
-        </p>
+  const [featured, ...rest] = services;
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s, i) => (
+  return (
+    <section id="services" className="py-28 px-6 bg-[#070f1a] relative overflow-hidden">
+      {/* Subtle left glow */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[600px] bg-[#2C5364]/8 rounded-full blur-[120px] -z-0" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+          <div>
+            <p className="text-[#7ECCD8] text-sm font-semibold uppercase tracking-[0.15em] mb-4">
+              What We Build
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.1]">
+              Everything your ops need
+              <br />
+              <span className="text-slate-500">to run without you.</span>
+            </h2>
+          </div>
+          <p className="text-slate-500 text-sm max-w-xs md:text-right leading-relaxed">
+            We don&apos;t sell tools. We build the system layer that sits behind your
+            entire business.
+          </p>
+        </div>
+
+        {/* Featured card — full width, shimmer border */}
+        <div className="relative rounded-3xl p-px mb-5 overflow-hidden">
+          {/* Shimmer gradient border */}
+          <div className="absolute inset-0 shimmer-border rounded-3xl opacity-40" />
+          <div className="relative rounded-3xl bg-[#0d1e2e] p-8 md:p-10 flex flex-col md:flex-row md:items-start gap-6">
+            {/* Icon */}
+            <div className="w-14 h-14 rounded-2xl bg-[#2C5364]/20 border border-[#2C5364]/30 flex items-center justify-center text-2xl flex-shrink-0">
+              {featured.emoji}
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-white font-bold text-xl">{featured.title}</h3>
+                <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#7ECCD8]/10 text-[#7ECCD8] border border-[#7ECCD8]/20 uppercase tracking-wider">
+                  {featured.tag}
+                </span>
+              </div>
+              <p className="text-[#7ECCD8] font-semibold text-base mb-3">{featured.hook}</p>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-xl">{featured.body}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 2×2 grid */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          {rest.map((s) => (
             <div
               key={s.title}
-              className={`relative rounded-2xl border border-[#2C5364]/20 bg-[#203A43]/20 p-6 hover:border-[#2C5364]/50 hover:bg-[#203A43]/35 transition-all group ${
-                i === 0 ? "ring-1 ring-[#2C5364]/30" : ""
-              }`}
+              className="card-glow group rounded-2xl border border-white/[0.05] bg-white/[0.02] p-6 hover:border-[#2C5364]/35 hover:bg-[#2C5364]/5 transition-all duration-300"
             >
-              {s.tag && (
-                <span className="absolute top-4 right-4 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#2C5364]/30 text-[#7ECCD8] border border-[#2C5364]/40">
-                  {s.tag}
-                </span>
-              )}
-              <div className="w-9 h-9 rounded-xl bg-[#2C5364]/20 text-[#7ECCD8] flex items-center justify-center mb-4 group-hover:bg-[#2C5364]/35 transition-colors">
-                {s.icon}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#203A43]/60 border border-white/[0.05] flex items-center justify-center text-lg flex-shrink-0 group-hover:border-[#2C5364]/30 transition-colors">
+                  {s.emoji}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-white font-bold text-[15px]">{s.title}</h3>
+                    {s.tag && (
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[#2C5364]/20 text-[#7ECCD8] border border-[#2C5364]/30 uppercase tracking-wider">
+                        {s.tag}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[#7ECCD8]/80 text-xs font-medium mb-2">{s.hook}</p>
+                  <p className="text-slate-500 text-sm leading-relaxed">{s.body}</p>
+                </div>
               </div>
-              <h3 className="text-white font-semibold text-base mb-2">{s.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{s.body}</p>
             </div>
           ))}
         </div>

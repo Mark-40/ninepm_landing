@@ -29,7 +29,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-[#0F2027] text-[#f0f4ff] antialiased">
+      <body className="min-h-screen bg-[#0a1628] text-[#f0f4ff] antialiased">
         {children}
       </body>
     </html>
